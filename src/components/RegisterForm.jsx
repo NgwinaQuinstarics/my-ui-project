@@ -1,61 +1,114 @@
 import { useState } from "react";
+import logo from "../assets/logo.jpeg";
 
-const fields = [
-  { id: "name", label: "Full Name", type: "text", placeholder: "Neba Eric" },
-  { id: "email", label: "Email Address", type: "email", placeholder: "kenzo@gmail.com" },
-  { id: "phone", label: "Phone Number", type: "tel", placeholder: "672 678 675" },
-];
+export default function RegisterForm() {
 
-export default function Register() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap');
-        * { font-family: 'Geist', sans-serif; box-sizing: border-box; }
-        input:focus { outline: none; border-color: #2563eb; }
-      `}</style>
+    <div className="min-h-screen bg-slate-100 flex items-center justify-center px-6">
 
-      <div className="min-h-screen bg-[#f8f8f6] flex items-center justify-center px-4">
-        <div className="w-full max-w-sm">
+      <div className="w-full max-w-3xl">
 
-          <a href="/" className="flex items-center gap-2 mb-10">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="15" stroke="#2563EB" strokeWidth="1.5"/>
-              <path d="M9 16l5-5 3 3 5-6 3 4-11 10L9 16Z" fill="#2563EB"/>
-            </svg>
-            <span className="text-sm font-semibold tracking-widest uppercase text-slate-800">Crestlancing</span>
-          </a>
+        {/* Logo */}
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <img
+            src={logo}
+            alt="Crestlancing Logo"
+            className="w-12 h-12 object-contain"
+          />
+          <h1 className="text-xl font-semibold text-blue-600 tracking-wide">
+            CRESTLANCING
+          </h1>
+        </div>
 
-          <h1 className="text-2xl font-semibold text-slate-900 mb-1">Create account</h1>
-          <p className="text-sm text-slate-400 mb-8">Fill in your details to get started.</p>
+        {/* Card */}
+        <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-10">
 
-          <div className="space-y-5">
-            {fields.map(({ id, label, type, placeholder }) => (
-              <div key={id}>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5 uppercase tracking-wider">{label}</label>
-                <input
-                  type={type}
-                  placeholder={placeholder}
-                  value={form[id]}
-                  onChange={e => setForm(p => ({ ...p, [id]: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-800 text-sm transition-colors"
-                />
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            Register
+          </h2>
 
-          <button className="w-full mt-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors">
-            Submit
-          </button>
+          <form onSubmit={handleSubmit} className="space-y-6">
 
-          <p className="text-center text-xs text-slate-400 mt-5">
-            Already have an account? <a href="#" className="text-blue-600 hover:underline">Sign in</a>
-          </p>
+            {/* Name */}
+            <div className="flex flex-col">
+              <label className="text-sm text-gray-600 mb-2">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Neba Eric"
+                value={form.name}
+                onChange={handleChange}
+                className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col">
+              <label className="text-sm text-gray-600 mb-2">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="kenzo@gmail.com"
+                value={form.email}
+                onChange={handleChange}
+                className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Phone */}
+            <div className="flex flex-col">
+              <label className="text-sm text-gray-600 mb-2">
+                Phone Number
+              </label>
+
+              <input
+                type="tel"
+                name="phone"
+                placeholder="672678675"
+                value={form.phone}
+                onChange={handleChange}
+                className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+            >
+              Submit Registration
+            </button>
+
+          </form>
 
         </div>
+
       </div>
-    </>
+
+    </div>
   );
 }
