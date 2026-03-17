@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logo1.png";
 
 export default function RegisterForm() {
 
@@ -22,25 +22,24 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center px-6">
+    
+    <div className="min-h-screen bg-white-100 flex items-center justify-center px-6">
 
       <div className="w-full max-w-3xl">
 
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-3 mb-8">
+        {/* form Card */}
+        <div className="bg-white  shadow-md border border-gray-100 p-10">
+             {/* Logo */}
+            <div className="flex items-center justify-center gap-00.45 mb-2">
           <img
             src={logo}
             alt="Crestlancing Logo"
-            className="w-12 h-12 object-contain"
+            className="w-18 h-24 object-contain"
           />
-          <h1 className="text-xl font-semibold text-blue-600 tracking-wide">
+          <h1 className="text-xl font-bold text-blue-500 tracking-wide">
             CRESTLANCING
           </h1>
         </div>
-
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-10">
-
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             Register
           </h2>
@@ -100,7 +99,7 @@ export default function RegisterForm() {
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
             >
-              Submit Registration
+              Submit 
             </button>
 
           </form>
@@ -108,7 +107,6 @@ export default function RegisterForm() {
         </div>
 
       </div>
-
-    </div>
+    </div> 
   );
 }

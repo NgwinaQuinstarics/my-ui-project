@@ -1,4 +1,7 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+import Layout from "./components/Layout";
 import RegisterForm from "./components/RegisterForm";
 import ContactsTable from "./components/ContactsTable";
 import ComposeMails from "./components/ComposeMails";
@@ -6,22 +9,22 @@ import SendMails from "./components/SendMails";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="max-w-4xl mx-auto p-6 space-y-10">
-        <section className="bg-white p-6 rounded-xl shadow">
-          <RegisterForm />
-        </section>
-        <section className="bg-white p-6 rounded-xl shadow">
-          <ContactsTable />
-        </section>
-        <section className="bg-white p-6 rounded-xl shadow">
-          <ComposeMails />
-        </section>
-        <section className="bg-white p-6 rounded-xl shadow">
-          <SendMails />
-        </section>
-      </main>
-    </div>
+    <Router>
+      <Routes>
+
+        {/* Pages WITHOUT layout */}
+        <Route path="/register" element={<RegisterForm />} />
+
+        {/* Pages WITH layout */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Navigate to="/compose" replace />} />
+          <Route path="/contacts" element={<ContactsTable />} />
+          <Route path="/compose" element={<ComposeMails />} />
+          <Route path="/send" element={<SendMails />} />
+        </Route>
+
+      </Routes>
+    </Router>
   );
 }
 
